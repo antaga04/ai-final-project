@@ -1,0 +1,43 @@
+:root {
+  --crisp: url('../public/crisp_q9lzph.png');
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ef7676;
+  background-image: var(--crisp);
+  background-position: 0 0, 0 0;
+  background-size: auto, auto;
+  scroll-behavior: smooth;
+  font-family: 'Helvetica', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+nav ul {
+  background-color: aqua;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+main {
+  min-height: 80svh;
+}
