@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/layoutCreate.css">
   <link rel="shortcut icon" href="" type="image/x-icon">
   <title>AI Final Project</title>
-  <script src="logic/createMaze.js"></script>
+  <script src="logic/createMaze.js" defer></script>
 </head>
 
 <body>
@@ -16,14 +17,22 @@
       <h1>AI Final Project</h1>
       <nav>
         <a title="About the project" href="index.html">About the project</a>
-        <a title="FIFO & LIFO Algorithms" href="algorithms.html">algorithms</a>
+        <a title="FIFO & LIFO Algorithms" href="algorithms.html">Algorithms</a>
         <a title="Create a new maze" href="createMaze.html">Create a new maze</a>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <div id="buttons">
+        <label for="mazeSize">Maze Size: </label>
+        <input type="number" id="mazeSize" min="1" max="10" value="5">
+        <button onclick="createMaze()">Create Maze</button>
+        <button onclick="downloadMaze()">Download</button>
+      </div>
+      <div id="maze"></div>
+    </main>
     <footer>
       <p>Design and built by Toni & Adrián</p>
-      <p>Al rigthts reserved!</p>
+      <p>All rights reserved!</p>
     </footer>
   </div>
 </body>
