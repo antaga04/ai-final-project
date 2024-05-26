@@ -13,26 +13,29 @@
 
 <body>
   <div id="app">
-    <header>
-      <h1>AI Final Project</h1>
-      <nav>
-        <a title="About the project" href="index.html">About the project</a>
-        <a title="FIFO & LIFO Algorithms" href="algorithms.html">Algorithms</a>
-        <a title="Create a new maze" href="createMaze.html">Create a new maze</a>
-      </nav>
-    </header>
-    <main>
-      <div id="buttons">
-        <label for="mazeSize">Maze Size: </label>
-        <input type="number" id="mazeSize" min="1" max="10" value="5">
-        <button onclick="createMaze()">Create Maze</button>
-        <button onclick="downloadMaze()">Download</button>
-      </div>
-      <div id="maze"></div>
-    </main>
+    <div id="up">
+      <header>
+        <nav>
+          <a class="nav_link" title="About the project" href="index.html">readme</a>
+          <a class="nav_link" title="FIFO & LIFO Algorithms" href="algorithms.html">algorithms</a>
+          <a class="nav_link active" title="Create a new maze" href="createMaze.html">maze</a>
+        </nav>
+      </header>
+      <main>
+        <h1>create a maze</h1>
+        <div id="buttons">
+          <form onsubmit="createMaze(); return false;">
+            <label for="mazeSize">Maze Size: </label>
+            <input type="number" id="mazeSize" min="2" max="10" value="5">
+            <button class="btn1" type="submit">Create Maze</button>
+          </form>
+          <button class="btn2" onclick="downloadMaze()">Download</button>
+        </div>
+        <div id="maze"></div>
+      </main>
+    </div>
     <footer>
-      <p>Design and built by Toni & Adrián</p>
-      <p>All rights reserved!</p>
+      <p>Designed and built by Toni & Adrián</p>
     </footer>
   </div>
 </body>

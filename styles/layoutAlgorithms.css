@@ -1,0 +1,115 @@
+#algorithms_options {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+#message {
+  margin: 0;
+  border-bottom: 1px solid;
+}
+
+.buttons button {
+  text-transform: uppercase;
+}
+
+#executionTime {
+  display: flex;
+  justify-content: space-between;
+}
+
+.maze_example {
+  border: 1px solid;
+  margin: auto;
+}
+
+.img_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cell {
+  padding: 1rem 0;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin: 2px;
+}
+
+.cell.path {
+  background-color: yellow;
+}
+
+.cell.start {
+  background-color: green;
+  color: white;
+}
+
+.cell.end {
+  background-color: red;
+  color: white;
+}
+
+.cell.wall {
+  background-color: black;
+  color: red;
+}
+
+/*  */
+.tableContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 .75rem;
+  overflow: scroll;
+}
+
+.mazeTr {
+  display: flex;
+  width: 100%;
+}
+
+
+#lifo_maze,
+#fifo_maze,
+#fifo_path_queue,
+#lifo_path_stack {
+  margin: 0 0 1rem;
+}
+
+/* TABLA */
+.data_table {
+  border-collapse: collapse;
+  font-size: 18px;
+  color: var(--secondary);
+}
+
+.data_table th,
+.data_table td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.data_table td:first-child {
+  text-align: left;
+}
+
+.data_table th {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.data_table tr:nth-child(even) {
+  background-color: var(--accent2);
+}
+
+.data_table tr:nth-child(odd) {
+  background-color: var(--accent3);
+}

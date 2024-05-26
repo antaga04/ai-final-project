@@ -11,19 +11,53 @@
 
 <body>
   <div id="app">
-    <header>
-      <h1>AI Final Project</h1>
-      <h2>algras+c</h2>
-      <nav>
-        <a title="About the project" href="index.html">About the project</a>
-        <a title="FIFO & LIFO Algorithms" href="algorithms.html">algorithms</a>
-        <a title="Create a new maze" href="createMaze.html">Create a new maze</a>
-      </nav>
-    </header>
-    <main></main>
+    <div id="up">
+      <header>
+        <nav>
+          <a class="nav_link active" title="About the project" href="index.html">readme</a>
+          <a class="nav_link" title="FIFO & LIFO Algorithms" href="algorithms.html">algorithms</a>
+          <a class="nav_link" title="Create a new maze" href="createMaze.html">maze</a>
+        </nav>
+      </header>
+      <main id="readme">
+        <h1>readme</h1>
+        <p>This is an application that visualizes discovering the way out in a maze by using one of two basic search
+          methods: DFS (LIFO data structure - a stack) and BFS (FIFO data structure - the queue).</p>
+        <p>The result of the
+          algorithm (the route in the maze) is presented graphically. App also shows the length of the discovered route.
+          The maze is loaded from a text file. An example of the text file is presented at the end of the page.</p>
+        <h2>In route discovering the following rules apply:</h2>
+        <ul>
+          <li>
+            <p>The route cannot go through the wall (thick line in Figure 1)</p>
+          </li>
+          <li>
+            <p>One move following directions are allowed: up, down, left or right.</p>
+          </li>
+        </ul>
+        <h2>Additional functionality of the application:</h2>
+        <ul>
+          <li>
+            <p>Graphical possibility of creating a new maze,</p>
+          </li>
+          <li>
+            <p>Presentation of the successive steps of algorithm,</p>
+          </li>
+          <li>
+            <p>Implementation of two methods of searching,</p>
+          </li>
+          <li>
+            <p>Comparison of two algorithms in terms of time for complete and length of discovered routes.</p>
+          </li>
+        </ul>
+        <figure class="img_container">
+          <img class="maze_example" src="/public/maze.webp" alt="Maze txt file example">
+          <figcaption>Figure 1.</figcaption>
+        </figure>
+      </main>
+    </div>
     <footer>
-      <p>Design and built by Toni & Adrián</p>
-      <p>Al rigthts reserved!</p>
+      <p>Designed and built by Toni & Adrián</p>
     </footer>
   </div>
 </body>

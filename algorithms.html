@@ -4,37 +4,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laberinto FIFO & LIFO</title>
   <link rel="stylesheet" href="styles/style.css">
-  <link rel="shortcut icon" href="" type="image/x-icon">
-  <title>AI Final Project</title>
-  <script src="logic/fifo.js"></script>
-  <script src="logic/lifo.js"></script>
+  <link rel="stylesheet" href="styles/layoutAlgorithms.css">
 </head>
 
 <body>
   <div id="app">
-    <header>
-      <h1>AI Final Project</h1>
-      <nav>
-        <a title="About the project" href="index.html">About the project</a>
-        <a title="FIFO & LIFO Algorithms" href="algorithms.html">algorithms</a>
-        <a title="Create a new maze" href="createMaze.html">Create a new maze</a>
-      </nav>
-    </header>
-    <main>
-      <input type="file">
-      <div>
-        <button>lifo</button>
-        <button>fifo</button>
-        <button>comparison</button>
-      </div>
-      <p id="message">Choose an option from above</p>
-    </main>
+    <div id="up">
+      <header>
+        <nav>
+          <a class="nav_link" href="index.html" title="About the project">readme</a>
+          <a class="nav_link active" href="algorithms.html" title="FIFO & LIFO Algorithms">algorithms</a>
+          <a class="nav_link" href="createMaze.html" title="Create a new maze">maze</a>
+        </nav>
+      </header>
+      <main>
+        <h1>Algorithms</h1>
+        <div id="algorithms_options">
+          <button class="btn1" id="exampleBtn">Load Example Maze</button>
+          <input type="file" accept=".txt" id="fileInput">
+          <div id="option_buttons">
+            <button class="btn1" id="lifoBtn" disabled="true">LIFO</button>
+            <button class="btn1" id="fifoBtn" disabled="true">FIFO</button>
+            <button class="btn2" id="compareBtn" disabled="true">Comparison</button>
+          </div>
+          <p id="message">Select a file!</p>
+        </div>
+        <div id="executionTime">
+          <p id="fifoTime" style="display: none;">FIFO Execution Time: -</p>
+          <p id="lifoTime" style="display: none;">LIFO Execution Time: -</p>
+        </div>        
+        
+        <div id="fifo_maze"></div>
+        <div id="lifo_maze"></div>
+
+        <div id="fifo_path_queue"></div>
+        <div id="lifo_path_stack"></div>
+      </main>
+    </div>
     <footer>
-      <p>Design and built by Toni & Adrián</p>
-      <p>Al rigthts reserved!</p>
+      <p>Designed and built by Toni & Adrián</p>
     </footer>
   </div>
+
+  <script type="module" src="scripts.js"></script>
 </body>
 
 </html>
