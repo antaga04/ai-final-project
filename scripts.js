@@ -57,19 +57,19 @@ const fifoAlgorithm = () => {
   const path = [];
   const queueStates = []; // Store the state of the queue in each step
   let steps = 0;
+  let stepsDeMas = 0;
+  let found = false;
 
   while (queue.length > 0) {
     const [x, y] = queue.shift();
     path.push([x, y]);
     queueStates.push([...queue]); // Store a copy of the current queue
-    steps++;
 
     if (x === end[0] && y === end[1]) {
-      showMaze(path, algorithm);
-      showQueueOrStack(queueStates, path, algorithm); // Pass the queue states
-      fifoSteps = steps; // Save the number of steps
-      fifoResult = path; // Save the result
-      return true;
+      found = true;
+      steps++;
+    } else if ((!(x === end[0] && y === end[1])) && (!found)){
+      steps++;
     }
 
     for (const { x: dx, y: dy } of directions) {
@@ -90,6 +90,14 @@ const fifoAlgorithm = () => {
     }
   }
 
+  if (found) {
+    showMaze(path, algorithm);
+    showQueueOrStack(queueStates, path, algorithm); // Pass the queue states
+    fifoSteps = steps; // Save the number of steps
+    fifoResult = path; // Save the result
+    return true;
+  }
+
   showMaze(path, algorithm);
   showQueueOrStack(queueStates, path, algorithm); // Pass the queue states
   fifoSteps = steps; // Save the number of steps
@@ -97,6 +105,7 @@ const fifoAlgorithm = () => {
   fifoResult = path; // Save the result
   return false;
 };
+
 
 const lifoAlgorithm = () => {
   if (!maze) return;
@@ -109,27 +118,29 @@ const lifoAlgorithm = () => {
     { x: 1, y: 0 }, // Down
     { x: 0, y: 1 }, // Right
   ];
+
   const stack = [start];
   const visited = new Set([`${start[0]},${start[1]}`]);
   const path = [];
   const stackStates = []; // Store the state of the stack in each step
   let steps = 0;
+  let found = false;
 
   while (stack.length > 0) {
     const [x, y] = stack.pop();
     path.push([x, y]);
     stackStates.push([...stack]); // Store a copy of the current stack
-    steps++;
 
     if (x === end[0] && y === end[1]) {
-      showMaze(path, algorithm);
-      showQueueOrStack(stackStates, path, algorithm); // Pass the stack states
-      lifoSteps = steps; // Save the number of steps
-      lifoResult = path; // Save the result
-      return true;
+      found = true;
+      steps++;
+    } else if ((!(x === end[0] && y === end[1])) && (!found)){
+      steps++;
     }
 
-    for (const { x: dx, y: dy } of directions) {
+    // Push directions in reverse order to achieve the correct processing order
+    for (let i = directions.length - 1; i >= 0; i--) {
+      const { x: dx, y: dy } = directions[i];
       const newX = x + dx;
       const newY = y + dy;
 
@@ -138,13 +149,21 @@ const lifoAlgorithm = () => {
         newX < maze.length &&
         newY >= 0 &&
         newY < maze[0].length &&
-        (maze[newX][newY] === ' ' || (newX === end[0] && newY === end[1])) &&
+        maze[newX][newY] === ' ' &&
         !visited.has(`${newX},${newY}`)
       ) {
         stack.push([newX, newY]);
         visited.add(`${newX},${newY}`);
       }
     }
+  }
+
+  if (found) {
+    showMaze(path, algorithm);
+    showQueueOrStack(stackStates, path, algorithm); // Pass the stack states
+    lifoSteps = steps; // Save the number of steps
+    lifoResult = path; // Save the result
+    return true;
   }
 
   showMaze(path, algorithm);
@@ -154,6 +173,7 @@ const lifoAlgorithm = () => {
   lifoResult = path; // Save the result
   return false;
 };
+
 
 const showMaze = (path, algorithm) => {
   const mazeContainer = document.getElementById(`${algorithm}_maze`);
