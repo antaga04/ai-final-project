@@ -1,8 +1,7 @@
 let maze, start, end;
 let fifoResult, lifoResult;
-let fifoStartTime, lifoStartTime;
-let fifoExecTime = null; // Tiempo de ejecución de FIFO
-let lifoExecTime = null; // Tiempo de ejecución de LIFO
+let fifoSteps = null; // Number of steps for FIFO
+let lifoSteps = null; // Number of steps for LIFO
 
 const readFile = (files) => {
   const file = files[0];
@@ -57,19 +56,18 @@ const fifoAlgorithm = () => {
   const visited = new Set([`${start[0]},${start[1]}`]);
   const path = [];
   const queueStates = []; // Store the state of the queue in each step
-
-  const startTime = performance.now(); // Start timing
+  let steps = 0;
 
   while (queue.length > 0) {
     const [x, y] = queue.shift();
     path.push([x, y]);
     queueStates.push([...queue]); // Store a copy of the current queue
+    steps++;
 
     if (x === end[0] && y === end[1]) {
-      const endTime = performance.now(); // End timing
       showMaze(path, algorithm);
       showQueueOrStack(queueStates, path, algorithm); // Pass the queue states
-      fifoExecTime = ((endTime - startTime) / 1000).toFixed(3) + ' s';
+      fifoSteps = steps; // Save the number of steps
       fifoResult = path; // Save the result
       return true;
     }
@@ -92,10 +90,9 @@ const fifoAlgorithm = () => {
     }
   }
 
-  const endTime = performance.now(); // End timing
   showMaze(path, algorithm);
   showQueueOrStack(queueStates, path, algorithm); // Pass the queue states
-  fifoExecTime = ((endTime - startTime) / 1000).toFixed(3) + ' s';
+  fifoSteps = steps; // Save the number of steps
   console.log('No valid path found.');
   fifoResult = path; // Save the result
   return false;
@@ -116,19 +113,18 @@ const lifoAlgorithm = () => {
   const visited = new Set([`${start[0]},${start[1]}`]);
   const path = [];
   const stackStates = []; // Store the state of the stack in each step
-
-  const startTime = performance.now(); // Start timing
+  let steps = 0;
 
   while (stack.length > 0) {
     const [x, y] = stack.pop();
     path.push([x, y]);
     stackStates.push([...stack]); // Store a copy of the current stack
+    steps++;
 
     if (x === end[0] && y === end[1]) {
-      const endTime = performance.now(); // End timing
       showMaze(path, algorithm);
       showQueueOrStack(stackStates, path, algorithm); // Pass the stack states
-      lifoExecTime = ((endTime - startTime) / 1000).toFixed(3) + ' s';
+      lifoSteps = steps; // Save the number of steps
       lifoResult = path; // Save the result
       return true;
     }
@@ -151,10 +147,9 @@ const lifoAlgorithm = () => {
     }
   }
 
-  const endTime = performance.now(); // End timing
   showMaze(path, algorithm);
   showQueueOrStack(stackStates, path, algorithm); // Pass the stack states
-  lifoExecTime = ((endTime - startTime) / 1000).toFixed(3) + ' s';
+  lifoSteps = steps; // Save the number of steps
   console.log('No valid path found.');
   lifoResult = path; // Save the result
   return false;
@@ -274,14 +269,14 @@ const showResult = (algorithm) => {
   lifoPathStackElement.style.display = (algorithm === 'lifo' || algorithm === 'compare') ? 'block' : 'none';
 
   if (algorithm === 'fifo' || algorithm === 'compare') {
-    fifoTimeElement.textContent = fifoExecTime ? `FIFO Execution Time: ${fifoExecTime}` : '';
+    fifoTimeElement.textContent = fifoSteps !== null ? `FIFO Number of Steps: ${fifoSteps - 2}` : '';
     fifoTimeElement.style.display = 'block';
   } else {
     fifoTimeElement.style.display = 'none';
   }
 
   if (algorithm === 'lifo' || algorithm === 'compare') {
-    lifoTimeElement.textContent = lifoExecTime ? `LIFO Execution Time: ${lifoExecTime}` : '';
+    lifoTimeElement.textContent = lifoSteps !== null ? `LIFO Number of Steps: ${lifoSteps - 2}` : '';
     lifoTimeElement.style.display = 'block';
   } else {
     lifoTimeElement.style.display = 'none';
