@@ -68,7 +68,7 @@ const fifoAlgorithm = () => {
     if (x === end[0] && y === end[1]) {
       found = true;
       steps++;
-    } else if ((!(x === end[0] && y === end[1])) && (!found)){
+    } else if (!(x === end[0] && y === end[1]) && !found) {
       steps++;
     }
 
@@ -106,7 +106,6 @@ const fifoAlgorithm = () => {
   return false;
 };
 
-
 const lifoAlgorithm = () => {
   if (!maze) return;
 
@@ -134,7 +133,7 @@ const lifoAlgorithm = () => {
     if (x === end[0] && y === end[1]) {
       found = true;
       steps++;
-    } else if ((!(x === end[0] && y === end[1])) && (!found)){
+    } else if (!(x === end[0] && y === end[1]) && !found) {
       steps++;
     }
 
@@ -173,7 +172,6 @@ const lifoAlgorithm = () => {
   lifoResult = path; // Save the result
   return false;
 };
-
 
 const showMaze = (path, algorithm) => {
   const mazeContainer = document.getElementById(`${algorithm}_maze`);
@@ -283,25 +281,33 @@ const showResult = (algorithm) => {
   const fifoTimeElement = document.getElementById('fifoTime');
   const lifoTimeElement = document.getElementById('lifoTime');
 
-  fifoMazeElement.style.display = (algorithm === 'fifo' || algorithm === 'compare') ? 'block' : 'none';
-  lifoMazeElement.style.display = (algorithm === 'lifo' || algorithm === 'compare') ? 'block' : 'none';
-  fifoPathQueueElement.style.display = (algorithm === 'fifo' || algorithm === 'compare') ? 'block' : 'none';
-  lifoPathStackElement.style.display = (algorithm === 'lifo' || algorithm === 'compare') ? 'block' : 'none';
+  fifoMazeElement.style.display =
+    algorithm === 'fifo' || algorithm === 'compare' ? 'block' : 'none';
+  lifoMazeElement.style.display =
+    algorithm === 'lifo' || algorithm === 'compare' ? 'block' : 'none';
+  fifoPathQueueElement.style.display =
+    algorithm === 'fifo' || algorithm === 'compare' ? 'block' : 'none';
+  lifoPathStackElement.style.display =
+    algorithm === 'lifo' || algorithm === 'compare' ? 'block' : 'none';
 
   if (algorithm === 'fifo' || algorithm === 'compare') {
-    fifoTimeElement.textContent = fifoSteps !== null ? `FIFO Number of Steps: ${fifoSteps - 2}` : '';
+    fifoTimeElement.textContent =
+      fifoSteps !== null ? `FIFO Number of Steps: ${fifoSteps - 2}` : '';
     fifoTimeElement.style.display = 'block';
   } else {
     fifoTimeElement.style.display = 'none';
   }
 
   if (algorithm === 'lifo' || algorithm === 'compare') {
-    lifoTimeElement.textContent = lifoSteps !== null ? `LIFO Number of Steps: ${lifoSteps - 2}` : '';
+    lifoTimeElement.textContent =
+      lifoSteps !== null ? `LIFO Number of Steps: ${lifoSteps - 2}` : '';
     lifoTimeElement.style.display = 'block';
   } else {
     lifoTimeElement.style.display = 'none';
   }
 };
+
+const clearMaze = () => {};
 
 document.getElementById('fileInput').addEventListener('change', (event) => {
   readFile(event.target.files);
@@ -343,3 +349,5 @@ document.getElementById('exampleBtn').addEventListener('click', loadExample);
 document.getElementById('fileInput').addEventListener('change', (event) => {
   readFile(event.target.files);
 });
+
+// document.getElementById('clearMaze').addEventListener('click', clearMaze);
